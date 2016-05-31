@@ -3,6 +3,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
@@ -155,7 +156,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
             {
                 throw new ArgumentNullException("boundType");
             }
-            if (!typeof(IComparable).IsAssignableFrom(boundType))
+            if (!typeof(IComparable).GetTypeInfo().IsAssignableFrom(boundType))
             {
                 throw new ArgumentException(Resources.ExceptionBoundTypeNotIComparable, "boundType");
             }
@@ -240,6 +241,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
 
         private readonly Guid typeId = Guid.NewGuid();
 
+#if !CORECLR
         /// <summary>
         /// Gets a unique identifier for this attribute.
         /// </summary>
@@ -250,5 +252,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
                 return this.typeId;
             }
         }
+#endif
     }
 }

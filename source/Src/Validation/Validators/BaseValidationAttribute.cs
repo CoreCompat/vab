@@ -3,6 +3,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
@@ -38,7 +39,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
             {
                 return ResourceStringLoader.LoadString(this.messageTemplateResourceType.FullName,
                     this.messageTemplateResourceName,
-                    this.messageTemplateResourceType.Assembly);
+                    this.messageTemplateResourceType.GetTypeInfo().Assembly);
             }
             if (null != this.messageTemplateResourceName || null != this.messageTemplateResourceType)
             {

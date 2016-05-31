@@ -3,6 +3,7 @@
 using System;
 using System.ComponentModel;
 using System.Configuration;
+using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Design;
@@ -194,7 +195,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Configuration
             {
                 return ResourceStringLoader.LoadString(messageTemplateResourceType.FullName,
                     this.MessageTemplateResourceName,
-                    messageTemplateResourceType.Assembly);
+                    messageTemplateResourceType.GetTypeInfo().Assembly);
             }
 
             return null;

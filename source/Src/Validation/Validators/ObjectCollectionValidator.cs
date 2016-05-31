@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
@@ -155,7 +156,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
                         {
                             var elementType = element.GetType();
 
-                            if (this.targetType == null || this.targetType.IsAssignableFrom(elementType))
+                            if (this.targetType == null || this.targetType.GetTypeInfo().IsAssignableFrom(elementType))
                             {
                                 // reset the current target and the key
                                 this.GetValidator(elementType).DoValidate(element, element, null, validationResults);

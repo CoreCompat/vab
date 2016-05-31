@@ -135,6 +135,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             IValidatedElement validatedElement,
             CompositeValidatorBuilderCreator validatorBuilderCreator)
         {
+#if !CORECLR
             IEnumerator<IValidatorDescriptor> validatorDescriptorsEnumerator =
                 validatedElement.GetValidatorDescriptors().GetEnumerator();
 
@@ -159,6 +160,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             while (validatorDescriptorsEnumerator.MoveNext());
 
             return validatorBuilder.GetValidator();
+#else
+            throw new NotImplementedException();
+#endif
         }
 
         /// <summary>
@@ -226,8 +230,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         {
             if (validatedElement == null) throw new ArgumentNullException("validatedElement");
 
+#if !CORECLR
             return this.memberAccessValidatorFactory.GetTypeValidatorBuilder(validatedElement.MemberInfo as Type,
                 validatedElement);
+#else
+            throw new NotImplementedException();
+#endif
         }
 
         /// <summary>

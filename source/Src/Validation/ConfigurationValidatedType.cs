@@ -137,7 +137,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
 
         MemberInfo IValidatedElement.MemberInfo
         {
-            get { return this.targetType; }
+            get { return this.targetType.GetTypeInfo(); }
         }
 
         Type IValidatedElement.TargetType

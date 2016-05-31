@@ -22,7 +22,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         /// </summary>
         /// <param name="type">The type to represent.</param>
         public ValidationAttributeValidatedType(Type type)
-            : base(type, type)
+            : base(type.GetTypeInfo(), type)
         { }
 
         IEnumerable<IValidatedElement> IValidatedType.GetValidatedProperties()

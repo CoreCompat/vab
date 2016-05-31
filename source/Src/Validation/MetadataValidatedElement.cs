@@ -113,7 +113,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         /// <param name="type">The type.</param>
         public void UpdateFlyweight(Type type)
         {
-            this.UpdateFlyweight(type, type);
+            this.UpdateFlyweight(type.GetTypeInfo(), type);
         }
 
         private void UpdateFlyweight(MemberInfo memberInfo, Type targetType)

@@ -24,10 +24,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Configuration
         /// <summary/>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
+#if !CORECLR
             if (value is string && !string.IsNullOrEmpty((string)value))
             {
                 return CultureInfo.GetCultureInfo((string)value);
             }
+#endif
             return null;
         }
 

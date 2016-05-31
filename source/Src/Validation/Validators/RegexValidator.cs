@@ -3,6 +3,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
@@ -276,7 +277,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
             }
             else
             {
-                return ResourceStringLoader.LoadString(patternResourceType.FullName, patternResourceName, patternResourceType.Assembly);
+                return ResourceStringLoader.LoadString(patternResourceType.FullName, patternResourceName, patternResourceType.GetTypeInfo().Assembly);
             }
         }
 

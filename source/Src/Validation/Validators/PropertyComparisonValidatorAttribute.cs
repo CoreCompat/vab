@@ -117,6 +117,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
 
         private readonly Guid typeId = Guid.NewGuid();
 
+#if !CORECLR
         /// <summary>
         /// Gets a unique identifier for this attribute.
         /// </summary>
@@ -127,5 +128,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
                 return this.typeId;
             }
         }
+#endif
     }
 }

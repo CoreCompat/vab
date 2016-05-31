@@ -2,6 +2,7 @@
 
 using System;
 using System.Globalization;
+using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation
@@ -76,7 +77,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             // null values need to be avoided when checking for type compliance for value types
             if (objectToValidate == null)
             {
-                if (typeof(T).IsValueType)
+                if (typeof(T).GetTypeInfo().IsValueType)
                 {
                     string message
                         = string.Format(

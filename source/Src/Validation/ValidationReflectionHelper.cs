@@ -92,7 +92,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
                 throw new ArgumentNullException("methodName");
             }
 
-            MethodInfo methodInfo = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);
+            MethodInfo methodInfo = type.GetTypeInfo().GetMethod(methodName, BindingFlags.Public | BindingFlags.Instance);
 
             if (!IsValidMethod(methodInfo))
             {
@@ -173,12 +173,13 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         {
             MemberInfo matchingElement = GetMatchingElement(element);
 
-            return Attribute.GetCustomAttributes(matchingElement, attributeType, inherit);
+            return matchingElement.GetCustomAttributes(attributeType, inherit).ToArray();
         }
 
         private static MemberInfo GetMatchingElement(MemberInfo element)
         {
-            Type sourceType = element as Type;
+#if !CORECLR
+            Type sourceType = element.MemberType;
             bool elementIsType = sourceType != null;
             if (sourceType == null)
             {
@@ -186,7 +187,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             }
 
             MetadataTypeAttribute metadataTypeAttribute = (MetadataTypeAttribute)
-                Attribute.GetCustomAttribute(sourceType, typeof(MetadataTypeAttribute), false);
+                sourceType.GetTypeInfo().GetCustomAttribute(typeof(MetadataTypeAttribute), false);
 
             if (metadataTypeAttribute == null)
             {
@@ -197,11 +198,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
 
             if (elementIsType)
             {
-                return sourceType;
+                return sourceType.GetTypeInfo();
             }
 
             MemberInfo[] matchingMembers =
-                sourceType.GetMember(
+                sourceType.GetTypeInfo().GetMember(
                     element.Name,
                     element.MemberType,
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -219,6 +220,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             }
 
             return element;
+#else
+            return element;
+#endif
         }
 
         private static bool MatchMethodBase(MethodBase mb, Type[] parameterTypes)

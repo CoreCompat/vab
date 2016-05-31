@@ -69,7 +69,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         {
             Type type = this.TargetType;
 
-            if (ValidationReflectionHelper.GetCustomAttributes(type, typeof(HasSelfValidationAttribute), false).Length == 0)
+            if (ValidationReflectionHelper.GetCustomAttributes(type.GetTypeInfo(), typeof(HasSelfValidationAttribute), false).Length == 0)
                 yield break;        // no self validation for the current type, ignore type
 
             foreach (MethodInfo methodInfo in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))

@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation
@@ -24,6 +23,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             this.validatorFactories = validatorFactories;
         }
 
+#if !CORECLR
         ///<summary>
         /// Initializes a composite validator factory from attribute and configuration validator factories
         ///</summary>
@@ -49,6 +49,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             : this(new ValidatorFactory[] { attributeValidatorFactory, configurationValidatorFactory, validationAttributeValidatorFactory })
         {
         }
+#endif
 
         /// <summary>
         /// Creates the validator for the specified target and ruleset.
@@ -70,7 +71,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         ///</summary>
         public override void ResetCache()
         {
-            validatorFactories.ForEach(f => f.ResetCache());
+            foreach(var f in validatorFactories)
+            {
+                f.ResetCache();
+            }
+
             base.ResetCache();
         }
 

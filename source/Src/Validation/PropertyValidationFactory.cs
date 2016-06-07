@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
@@ -112,11 +114,13 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
                 validators.Add(
                     GetPropertyValidatorFromAttributes(type, propertyInfo, ruleset, memberAccessValidatorBuilderFactory));
             }
+#if !CORECLR
             if (validationSpecificationSource.IsSet(ValidationSpecificationSource.Configuration))
             {
                 validators.Add(
                     GetPropertyValidatorFromConfiguration(type, propertyInfo, ruleset, memberAccessValidatorBuilderFactory));
             }
+#endif
             if (validationSpecificationSource.IsSet(ValidationSpecificationSource.DataAnnotations))
             {
                 validators.Add(
@@ -170,6 +174,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             return validator;
         }
 
+#if !CORECLR
         /// <summary>
         /// 
         /// </summary>
@@ -213,6 +218,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
 
             return validator;
         }
+#endif
 
         /// <summary>
         /// 
@@ -248,6 +254,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             return validator;
         }
 
+#if !CORECLR
         private static ValidatedPropertyReference GetValidatedPropertyReference(Type type,
             string ruleset,
             string propertyName,
@@ -271,6 +278,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
 
             return null;
         }
+#endif
 
         private struct PropertyValidatorCacheKey : IEquatable<PropertyValidatorCacheKey>
         {
@@ -292,7 +300,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
                     ^ (this.ruleset != null ? this.ruleset.GetHashCode() : 0);
             }
 
-            #region IEquatable<PropertyValidatorCacheKey> Members
+#region IEquatable<PropertyValidatorCacheKey> Members
 
             bool IEquatable<PropertyValidatorCacheKey>.Equals(PropertyValidatorCacheKey other)
             {
@@ -301,7 +309,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
                     && (this.ruleset == null ? other.ruleset == null : this.ruleset.Equals(other.ruleset));
             }
 
-            #endregion
+#endregion
         }
     }
 }

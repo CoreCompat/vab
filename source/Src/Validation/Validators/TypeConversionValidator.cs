@@ -3,8 +3,10 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
@@ -12,7 +14,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// <summary>
     /// Validates a string by checking it represents a value for a given type.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(TypeConversionValidatorData))]
+#endif
     public class TypeConversionValidator : ValueValidator<string>
     {
         private Type targetType;

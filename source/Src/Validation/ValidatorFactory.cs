@@ -10,7 +10,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
     /// Abstract validator factory for creating validators for a specific type.
     ///</summary>
     /// <seealso cref="AttributeValidatorFactory"/>
-    /// <seealso cref="ConfigurationValidatorFactory"/>    
     /// <seealso cref="ValidationAttributeValidatorFactory"/>
     /// <seealso cref="CompositeValidatorFactory"/>
     public abstract class ValidatorFactory

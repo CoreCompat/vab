@@ -2,8 +2,10 @@
 
 using System;
 using System.Collections.Generic;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 using System.Globalization;
 
@@ -12,7 +14,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// <summary>
     /// Logs a failure when validating a <see langword="null"/> reference.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(NotNullValidatorData))]
+#endif
     public class NotNullValidator : ValueValidator
     {
         /// <summary>

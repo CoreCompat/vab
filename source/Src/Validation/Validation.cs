@@ -127,6 +127,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             return resultsReturned;
         }
 
+#if !CORECLR
         /// <summary>
         /// Validates <paramref name="target"/> using validation criteria specified for type <typeparamref name="T"/>
         /// through configuration for the default ruleset.
@@ -171,5 +172,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
             }
             return resultsReturned;
         }
+#endif
     }
 }

@@ -2,8 +2,10 @@
 
 using System;
 using System.Reflection;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
@@ -12,7 +14,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// Performs validation on objects by applying the validation rules specified for a supplied type.
     /// </summary>
     /// <seealso cref="ValidationFactory"/>
+#if !CORECLR
     [ConfigurationElementType(typeof(ObjectValidatorData))]
+#endif
     public class ObjectValidator : Validator
     {
         private readonly Type targetType;

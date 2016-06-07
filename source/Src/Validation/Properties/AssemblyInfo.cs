@@ -3,8 +3,10 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Design;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 
 [assembly: AssemblyTitle("Enterprise Library Validation Application Block")]
 [assembly: AssemblyDescription("Enterprise Library Validation Application Block")]
@@ -16,9 +18,11 @@ using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
 
 [assembly: ComVisible(false)]
 
+#if !CORECLR
 [assembly: HandlesSection(ValidationSettings.SectionName)]
 [assembly: AddApplicationBlockCommand(
                 ValidationSettings.SectionName,
                 typeof(ValidationSettings),
                 TitleResourceType = typeof(DesignResources),
                 TitleResourceName = "AddValidationSettings")]
+#endif

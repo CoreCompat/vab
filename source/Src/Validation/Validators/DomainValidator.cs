@@ -4,15 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
 {
     /// <summary>
     /// Validates an object by checking if it belongs to a set.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(DomainValidatorData))]
+#endif
     public class DomainValidator<T> : ValueValidator<T>
     {
         private IEnumerable<T> domain;

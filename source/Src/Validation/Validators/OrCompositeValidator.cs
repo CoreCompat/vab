@@ -2,8 +2,10 @@
 
 using System;
 using System.Collections.Generic;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 using System.Globalization;
 
@@ -15,7 +17,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// <remarks>
     /// Validation results are logged only if all composed validators log results.
     /// </remarks>
+#if !CORECLR
     [ConfigurationElementType(typeof(OrCompositeValidatorData))]
+#endif
     public class OrCompositeValidator : Validator
     {
         private IEnumerable<Validator> validators;

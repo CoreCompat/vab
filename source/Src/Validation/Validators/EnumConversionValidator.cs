@@ -4,15 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
 {
     /// <summary>
     /// Validates a string by checking it represents a value for a given enum type.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(EnumConversionValidatorData))]
+#endif
     public class EnumConversionValidator : ValueValidator<string>
     {
         private Type enumType;

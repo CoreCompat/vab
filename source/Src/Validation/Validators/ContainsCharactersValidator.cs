@@ -2,8 +2,10 @@
 
 using System.Collections.Generic;
 using System.Globalization;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
@@ -11,7 +13,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// <summary>
     /// Performs validation on strings by verifying if it contains a character set using the <see cref="ContainsCharacters"/> mode.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(ContainsCharactersValidatorData))]
+#endif
     public class ContainsCharactersValidator : ValueValidator<string>
     {
         private string characterSet;

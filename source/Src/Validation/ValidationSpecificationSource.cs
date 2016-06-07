@@ -2,14 +2,18 @@
 
 using System;
 using System.ComponentModel;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+#endif
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation
 {
     /// <summary>
     /// Specifies the required source for validation information when invoking <see cref="Validator"/> creation methods.
     /// </summary>
+#if !CORECLR
     /// <seealso cref="ValidationFactory.CreateValidator{T}(string, IConfigurationSource)"/>
+#endif
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames"), Flags]
     public enum ValidationSpecificationSource
     {

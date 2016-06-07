@@ -2,8 +2,10 @@
 
 using System;
 using System.Globalization;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
@@ -11,7 +13,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// <summary>
     /// Validates a <see cref="DateTime"/> value by checking it belongs to a range relative to the current date.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(RelativeDateTimeValidatorData))]
+#endif
     public class RelativeDateTimeValidator : ValueValidator<DateTime>
     {
         private int lowerBound;

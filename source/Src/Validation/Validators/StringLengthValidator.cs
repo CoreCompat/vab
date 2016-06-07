@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Globalization;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Validation.Properties;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
@@ -13,7 +15,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// <remarks>
     /// <see langword="null"/> is logged as a failure.
     /// </remarks>
+#if !CORECLR
     [ConfigurationElementType(typeof(StringLengthValidatorData))]
+#endif
     public class StringLengthValidator : ValueValidator<string>
     {
         private RangeChecker<int> rangeChecker;

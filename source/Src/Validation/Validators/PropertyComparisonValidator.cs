@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Configuration;
+#endif
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
 {
@@ -10,7 +12,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation.Validators
     /// Performs validation by comparing the a value with the value of a property on the target
     /// object by using a specified comparison operation.
     /// </summary>
+#if !CORECLR
     [ConfigurationElementType(typeof(PropertyComparisonValidatorData))]
+#endif
     public class PropertyComparisonValidator : ValueAccessComparisonValidator
     {
         /// <summary>

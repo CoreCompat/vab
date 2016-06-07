@@ -173,7 +173,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
         {
             MemberInfo matchingElement = GetMatchingElement(element);
 
-            return matchingElement.GetCustomAttributes(attributeType, inherit).ToArray();
+            return matchingElement.GetCustomAttributes(attributeType, inherit).OfType<Attribute>().ToArray();
         }
 
         private static MemberInfo GetMatchingElement(MemberInfo element)

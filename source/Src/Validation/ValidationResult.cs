@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
+#if !CORECLR
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
+#endif
 using System.Collections.Generic;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Validation
@@ -9,15 +11,21 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
     /// <summary>
     /// Represents the result of an atomic validation.
     /// </summary>
+#if !CORECLR
     [Serializable]
+#endif
     public class ValidationResult
     {
         private string message;
         private string key;
         private string tag;
+#if !CORECLR
         [NonSerialized]
+#endif
         private object target;
+#if !CORECLR
         [NonSerialized]
+#endif
         private Validator validator;
         private IEnumerable<ValidationResult> nestedValidationResults;
 

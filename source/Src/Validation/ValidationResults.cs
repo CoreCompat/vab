@@ -9,7 +9,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Validation
     /// <summary>
     /// Represents the result of validating an object.
     /// </summary>
+#if !CORECLR
     [Serializable]
+#endif
     public class ValidationResults : IEnumerable<ValidationResult>
     {
         private List<ValidationResult> validationResults;
